@@ -27,6 +27,8 @@ numeric_features = ['LotFrontage', 'LotArea', 'MasVnrArea', 'BsmtFinSF1', 'BsmtF
 categorical_features = [f for f in all_features if not(f in numeric_features)]
 
 numeric_df = all_df[numeric_features]
+for nf in numeric_features:
+    numeric_df[nf+'**2'] = numeric_df[nf]**2
 X = numeric_df.as_matrix()
 imp = pp.Imputer(missing_values='NaN', strategy='most_frequent', axis=0)
 imp = imp.fit(X)
